@@ -1,0 +1,7 @@
+License 
+
+
+You must ask persmission before using this code. This program is just a refractor of my Preivouse Text editor.
+I wanted to follow a more Object orientated design and untangle all the Spegetto code of my previouse project.
+The first project was coded in Swing while this one is coded in javafx.
+
