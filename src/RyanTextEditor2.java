@@ -14,7 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.control.MenuItem;
 import javafx.stage.FileChooser;
-import java.awt.Desktop;
+//import java.awt.Desktop;
 
 
 /**
@@ -25,14 +25,15 @@ public class RyanTextEditor2 extends Application {
     GuiObjects mygui = new GuiObjects();
     MenuEvents menu_events = new MenuEvents();
     private MenuItem[] items = new MenuItem[5];
-    private Desktop desk = Desktop.getDesktop();
-    
+    //private Desktop desk = Desktop.getDesktop();
    
     @Override
     public void start(Stage primaryStage) {
       int width = 500;
       int height = 500;
       Image icon = new Image("icon.gif");
+      
+   
       
           BorderPane bpane = new BorderPane();
           bpane.setTop((Node)placeMenuBar());
