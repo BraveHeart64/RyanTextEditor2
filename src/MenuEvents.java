@@ -1,22 +1,14 @@
-
-import java.awt.Desktop;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.util.Scanner;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.scene.control.MenuItem;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.scene.Node;
+import javafx.print.PrinterJob;
+import javafx.scene.control.TextArea;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *
+ * 
+ * 
  */
 
 /**
@@ -62,7 +54,9 @@ public class MenuEvents extends GuiObjects {
                 
                  
                   items[3].setOnAction((final ActionEvent event) -> {
-                     
+                       TextArea   tobeprinted = new TextArea();
+                       tobeprinted =   gui.TextAreaToBePrinted(tobeprinted);
+                       PrintTextOut(tobeprinted);
                      
                  });
                  
@@ -78,5 +72,20 @@ public class MenuEvents extends GuiObjects {
     }
      
   
-       
+       private void PrintTextOut(Node node){
+           PrinterJob printer = PrinterJob.createPrinterJob();
+           
+          
+           
+           if(printer != null){
+               boolean print = printer.printPage(node);
+               if(print){
+                   printer.endJob();
+               } else{
+                   System.out.println("An error has occured");
+               }
+           }
+           
+           
+       }
 }
