@@ -94,6 +94,7 @@ public class GuiObjects {
     
     public TextArea TextAreaToBePrinted(TextArea t){
        t = ta_text;
+     
        return t;
     }
     

@@ -1,9 +1,12 @@
 import javafx.event.ActionEvent;
+import javafx.print.PageLayout;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.print.PrinterJob;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 /*
  *
@@ -19,7 +22,7 @@ public class MenuEvents extends GuiObjects {
     
      private  String datafromfile = "";
      private FileHandleing filehandle = new FileHandleing();
-   
+     private TextArea   tobeprinted = new TextArea();
     
  
   
@@ -54,15 +57,15 @@ public class MenuEvents extends GuiObjects {
                 
                  
                   items[3].setOnAction((final ActionEvent event) -> {
-                       TextArea   tobeprinted = new TextArea();
+                       
                        tobeprinted =   gui.TextAreaToBePrinted(tobeprinted);
-                       PrintTextOut(tobeprinted);
+                       PrintTextOut();
                      
                  });
                  
                   
                     items[4].setOnAction((final ActionEvent event) -> {
-                    // needs to close the file and then close the program  
+                  //close the file
                     System.exit(0);
                     
                    });
@@ -71,15 +74,20 @@ public class MenuEvents extends GuiObjects {
                 
     }
      
-  
-       private void PrintTextOut(Node node){
+ 
+       private void PrintTextOut(){
+           TextFlow text = new TextFlow(new Text(tobeprinted.getText()));
            PrinterJob printer = PrinterJob.createPrinterJob();
            
           
            
-           if(printer != null){
-               boolean print = printer.printPage(node);
-               if(print){
+           if(printer != null && printer.showPrintDialog(tobeprinted.getScene().getWindow())){
+               PageLayout layout = printer.getJobSettings().getPageLayout();
+               text.setMaxWidth(layout.getPrintableWidth());
+               text.setMaxHeight(layout.getPrintableHeight());
+               
+               //boolean print = printer.printPage(node);
+               if(printer.printPage(text)){
                    printer.endJob();
                } else{
                    System.out.println("An error has occured");
