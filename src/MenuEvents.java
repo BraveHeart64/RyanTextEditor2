@@ -70,7 +70,7 @@ public class MenuEvents extends GuiObjects {
                 
     }
      
- 
+
        private void PrintTextOut(){
            TextFlow text = new TextFlow(new Text(tobeprinted.getText()));
            PrinterJob printer = PrinterJob.createPrinterJob();
